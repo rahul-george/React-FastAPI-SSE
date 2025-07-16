@@ -1,0 +1,22 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Rahul T Gerorge",email = "34202955+rahul-george@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi (>=0.116.1,<0.117.0)",
+    "uvicorn (>=0.35.0,<0.36.0)"
+]
+
+[tool.poetry]
+packages = [{include = "backend", from = "src"}]
+package-mode = false
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
