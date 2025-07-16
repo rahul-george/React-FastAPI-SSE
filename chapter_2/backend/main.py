@@ -38,4 +38,4 @@ def read_commentary(count, memo={}):
 
 @app.get('/polling/logs/{count}')
 async def read_next_line(count: int):
-    return json.dumps(read_commentary(count))
+    return read_commentary(count)
