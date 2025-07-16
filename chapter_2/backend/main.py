@@ -1,10 +1,22 @@
 import json
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from fastapi_profiler import Profiler
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 Profiler(app)
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # frontend dev server
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/')
 async def root():
@@ -26,4 +38,4 @@ def read_commentary(count, memo={}):
 
 @app.get('/polling/logs/{count}')
 async def read_next_line(count: int):
-    return read_commentary(count)
+    return json.dumps(read_commentary(count))
