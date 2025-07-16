@@ -1,0 +1,92 @@
+[
+  {
+    "commentary": "1st ball – elegant cover drive! Four runs to start the innings.",
+    "score": "Team A: 4/0",
+    "overs": "0.1",
+    "timestamp": "2025-07-16T14:00:10Z"
+  },
+  {
+    "commentary": "A sharp bouncer surprises the batter. No run.",
+    "score": "Team A: 4/0",
+    "overs": "0.2",
+    "timestamp": "2025-07-16T14:00:35Z"
+  },
+  {
+    "commentary": "Straight to the fielder at mid-on. Dot ball.",
+    "score": "Team A: 4/0",
+    "overs": "0.3",
+    "timestamp": "2025-07-16T14:01:00Z"
+  },
+  {
+    "commentary": "Edged and taken! What a catch at slip. First wicket falls.",
+    "score": "Team A: 4/1",
+    "overs": "0.4",
+    "timestamp": "2025-07-16T14:01:25Z"
+  },
+  {
+    "commentary": "New batter in, nudges one to square leg. Single taken.",
+    "score": "Team A: 5/1",
+    "overs": "0.5",
+    "timestamp": "2025-07-16T14:01:50Z"
+  },
+  {
+    "commentary": "Looping delivery, lofted over mid-off! Boundary.",
+    "score": "Team A: 9/1",
+    "overs": "0.6",
+    "timestamp": "2025-07-16T14:02:15Z"
+  },
+  {
+    "commentary": "Swept hard, races to the fence. Four!",
+    "score": "Team A: 15/1",
+    "overs": "1.2",
+    "timestamp": "2025-07-16T14:03:40Z"
+  },
+  {
+    "commentary": "Fast and straight – bowled him! Clean dismissal.",
+    "score": "Team A: 15/2",
+    "overs": "2.1",
+    "timestamp": "2025-07-16T14:05:10Z"
+  },
+  {
+    "commentary": "End of 5 overs. Team A rebuilding after early blows.",
+    "score": "Team A: 29/2",
+    "overs": "5.0",
+    "timestamp": "2025-07-16T14:12:30Z"
+  },
+  {
+    "commentary": "Team B innings begins. Solid defense to the first ball.",
+    "score": "Team B: 0/0",
+    "overs": "0.1",
+    "timestamp": "2025-07-16T14:20:00Z"
+  },
+  {
+    "commentary": "Driven between cover and point – classic shot!",
+    "score": "Team B: 4/0",
+    "overs": "0.2",
+    "timestamp": "2025-07-16T14:20:25Z"
+  },
+  {
+    "commentary": "Short ball pulled away! That’s another boundary.",
+    "score": "Team B: 8/0",
+    "overs": "0.4",
+    "timestamp": "2025-07-16T14:20:55Z"
+  },
+  {
+    "commentary": "Soft hands, nudged into the gap for a couple.",
+    "score": "Team B: 10/0",
+    "overs": "0.6",
+    "timestamp": "2025-07-16T14:21:30Z"
+  },
+  {
+    "commentary": "Bowled him! Big breakthrough.",
+    "score": "Team B: 14/1",
+    "overs": "1.3",
+    "timestamp": "2025-07-16T14:22:45Z"
+  },
+  {
+    "commentary": "End of 5 overs. Team B ahead on momentum.",
+    "score": "Team B: 32/1",
+    "overs": "5.0",
+    "timestamp": "2025-07-16T14:28:55Z"
+  }
+]
