@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Button, Box, Heading } from "@chakra-ui/react";
-import api from "@/lib/axios";
+import { Box, Separator} from "@chakra-ui/react";
+
+import Polling from "@/section/polling/polling";
 
 function App() {
   const [message, setMessage] = useState("Loading...");
@@ -18,11 +18,7 @@ const handleFetch = async () => {
 
   return (
     <Box p={6}>
-      <Heading mb={4}>Hello Chakra UI 👋</Heading>
-      <Button colorScheme="teal" onClick={handleFetch}>Click Me</Button>
-      <Box mt={4} p={4} bg="red.500" borderRadius="md">
-        API Response: {message}
-      </Box>
+      <Polling></Polling>
     </Box>
   );
 }
