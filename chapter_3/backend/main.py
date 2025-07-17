@@ -60,29 +60,33 @@ class SSEModel:
         else:    
             return f'id: {self.id}\nevent: {self.event}\ndata: {self.data}\n\n'
 
-async def stream_commentary():
+async def stream_commentary(mode):
+    if mode == 'commentary':
     # Example with commentary data
-    # with open('commentary.json', 'r') as fh:
-    #     data = json.load(fh)
-    #     for row in data:
-    #         await asyncio.sleep(1)
-    #         yield str(SSEModel(row, event="Digit"))
+        with open('commentary.json', 'r') as fh:
+            data = json.load(fh)
+            for row in data:
+                await asyncio.sleep(1)
+                yield str(SSEModel(row, event="Digit"))
+        
+        yield str(SSEModel(None, event="Completed"))
     
-    # yield str(SSEModel(None, event="Completed"))
-    
+    elif mode == 'simple':
     # Simpler example. Returns number
-    for i in range(100):
-        await asyncio.sleep(1)
-        yield str(SSEModel(i))
+        for i in range(100):
+            await asyncio.sleep(1)
+            yield str(SSEModel(i))
+        
+        yield str(SSEModel(None, event="Completed"))
     
-    yield str(SSEModel(None, event="Completed"))
+    else:
+        yield str(SSEModel(f'{mode} is not a valid mode', event="error"))
 
-
-@app.get('/sse/logs')
-async def stream_logs():
+@app.get('/sse/logs/{mode}')
+async def stream_logs(mode:str):
     headers = {'Content-Type': 'text/event-stream', 
                                       'Connection': 'keep-alive', 
                                       "Cache-Control": "no-cache"}
-    return StreamingResponse(stream_commentary(), 
+    return StreamingResponse(stream_commentary(mode), 
                              media_type="text/event-stream",
                              headers=headers)
