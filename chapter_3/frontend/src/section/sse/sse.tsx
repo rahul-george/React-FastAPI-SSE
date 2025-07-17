@@ -7,22 +7,41 @@ function ServerSentEvents() {
   const eventSourceRef = useRef<EventSource | null>(null);
   const reconnectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const handleMessage = (event) => {
+      const newEvent = JSON.parse(event.data);
+      setEvents((prevEvents) => [newEvent, ...prevEvents]);
+  };
+
+  const handleCommentary = (event) => {
+      const newEvent = JSON.parse(event.data);
+      setEvents((prevEvents) => [newEvent.commentary, ...prevEvents]);
+  };
+
   useEffect(() => {
     const connect = () => {
+      // const eventSource = new EventSource(
+      //   "https://bug-free-orbit-9q6p79wx6v92xrg5-8000.app.github.dev/sse/logs/simple"
+      // );
       const eventSource = new EventSource(
-        "https://bug-free-orbit-9q6p79wx6v92xrg5-8000.app.github.dev/sse/logs/simple"
+        "https://bug-free-orbit-9q6p79wx6v92xrg5-8000.app.github.dev/sse/logs/commentary"
       );
-      // const eventSource = new EventSource("https://bug-free-orbit-9q6p79wx6v92xrg5-8000.app.github.dev/sse/logs/commentary");
 
       eventSourceRef.current = eventSource;
+      eventSource.addEventListener("Commentary", (event) => {
+        // console.log(event);
+        handleCommentary(event)
+      });
+
+      // Completed event handler
+      eventSource.addEventListener("Completed", (event) => {
+        // console.log("Closing event source");
+        eventSource.close();
+        setEvents((prevEvents) => ["Data stream completed", ...prevEvents]);
+      })
+
       eventSource.onmessage = (event) => {
-        // console.log(event)
-        if (event.type == "Completed") {
-          console.log("Closing event source");
-          eventSource.close();
-        }
-        const newEvent = JSON.parse(event.data);
-        setEvents((prevEvents) => [newEvent, ...prevEvents]);
+        // console.log(event);
+        handleMessage(event)
       };
 
       eventSource.onerror = (error) => {
@@ -35,15 +54,15 @@ function ServerSentEvents() {
       };
     };
 
-      connect();
+    connect();
 
-      return () => {
-        console.log("Cleaning up SSE connection");
-        eventSourceRef.current?.close();
-        if (reconnectTimerRef.current) {
-          clearTimeout(reconnectTimerRef.current);
-        }
-      };
+    return () => {
+      console.log("Cleaning up SSE connection");
+      eventSourceRef.current?.close();
+      if (reconnectTimerRef.current) {
+        clearTimeout(reconnectTimerRef.current);
+      }
+    };
   }, []);
 
   return (

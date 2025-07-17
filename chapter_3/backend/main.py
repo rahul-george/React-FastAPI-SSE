@@ -67,7 +67,7 @@ async def stream_commentary(mode):
             data = json.load(fh)
             for row in data:
                 await asyncio.sleep(1)
-                yield str(SSEModel(row, event="Digit"))
+                yield str(SSEModel(json.dumps(row), event="Commentary"))
         
         yield str(SSEModel(None, event="Completed"))
     
