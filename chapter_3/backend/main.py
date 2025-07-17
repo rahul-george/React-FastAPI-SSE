@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import json
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -43,18 +44,45 @@ async def read_next_line(count: int):
 
 
 # ------- Server sent events ----------------
+# Documentation for SSE: 
+# https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+
+
+class SSEModel:
+    def __init__(self, data, _id=None, event=None) -> None:
+        self.data = data
+        self.id = datetime.datetime.now() if _id is None else _id
+        self.event = event      # Allows us to use named events at client side. 
+    
+    def __str__(self):
+        if self.event is None:
+            return f'id: {self.id}\ndata: {self.data}\n\n'
+        else:    
+            return f'id: {self.id}\nevent: {self.event}\ndata: {self.data}\n\n'
 
 async def stream_commentary():
+    # Example with commentary data
     # with open('commentary.json', 'r') as fh:
     #     data = json.load(fh)
     #     for row in data:
-    #         yield row
+    #         await asyncio.sleep(1)
+    #         yield str(SSEModel(row, event="Digit"))
     
+    # yield str(SSEModel(None, event="Completed"))
+    
+    # Simpler example. Returns number
     for i in range(100):
         await asyncio.sleep(1)
-        yield str(i)
+        yield str(SSEModel(i))
+    
+    yield str(SSEModel(None, event="Completed"))
 
 
 @app.get('/sse/logs')
 async def stream_logs():
-    return StreamingResponse(stream_commentary(), media_type='text/event-stream')
+    headers = {'Content-Type': 'text/event-stream', 
+                                      'Connection': 'keep-alive', 
+                                      "Cache-Control": "no-cache"}
+    return StreamingResponse(stream_commentary(), 
+                             media_type="text/event-stream",
+                             headers=headers)
