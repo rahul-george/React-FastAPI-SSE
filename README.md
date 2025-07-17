@@ -34,3 +34,9 @@ Start frontend server
   npm run start
 ```
 
+
+References: 
+1. https://dev.to/lagoni/how-to-implement-eventsource-and-sse-in-your-frontend-and-backend-18co
+2. https://fastapi.tiangolo.com/advanced/custom-response/#streamingresponse
+
+
