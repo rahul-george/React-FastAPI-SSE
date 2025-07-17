@@ -77,5 +77,6 @@ Start frontend server
 References: 
 1. https://dev.to/lagoni/how-to-implement-eventsource-and-sse-in-your-frontend-and-backend-18co
 2. https://fastapi.tiangolo.com/advanced/custom-response/#streamingresponse
+3. https://blog.logrocket.com/using-fetch-event-source-server-sent-events-react/
 
 
